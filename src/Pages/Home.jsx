@@ -17,7 +17,7 @@ const Home = () => {
 						</div>
 					</div>
 					<div className="text-center lg:text-6xl text-3xl">SmartAI مكان حيث يزدهر فيه الابداع</div>
-					<Link to="/SmartAI-2/DoctorGPT" className="btn text-4xl mt-32">
+					<Link to="/SmartAI/DoctorGPT" className="btn text-4xl mt-32">
 						جرب DoctorGPT
 					</Link>
 				</div>

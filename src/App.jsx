@@ -10,10 +10,10 @@ export default function App() {
 			<NavBar />
 			<div className="pt-32">
 				<Routes>
-					<Route path="/SmartAI-2" element={<Home />} />
-					<Route path="/SmartAI-2/Home" element={<Home />} />
-					<Route path="/SmartAI-2/DoctorGPT" element={<DoctorGPT />} />
-					<Route path="/SmartAI-2/*" element={<ErrorPage />} />
+					<Route path="/SmartAI" element={<Home />} />
+					<Route path="/SmartAI/Home" element={<Home />} />
+					<Route path="/SmartAI/DoctorGPT" element={<DoctorGPT />} />
+					<Route path="/SmartAI/*" element={<ErrorPage />} />
 				</Routes>
 			</div>
 		</>
