@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  transition: all 300ms;
+  outline: none;
+  margin: 0px;
+  padding: 0px;
+  @apply placeholder:select-none;
+}
+
+img {
+  user-select: none;
+}
+
+.btn {
+  @apply flex items-center justify-center bg-main text-white p-4 rounded-lg mt-16 cursor-pointer hover:shadow-lg;
+}
+
+hr {
+  @apply border-OpenColor-gray-3;
+}

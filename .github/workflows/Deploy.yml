@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.5.3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.7.0
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Set Environment Variables
+        run: |
+          echo "VITE_OPENAI_API_KEY=${{ secrets.VITE_OPENAI_API_KEY }}" >> .env
+
+      - name: Build Application
+        run: npm run build
+
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
