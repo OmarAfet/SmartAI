@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet" />
+		<title>M7ilan Template</title>
+		<script type="text/javascript">
+			(function (l) {
+				if (l.search[1] === "/") {
+					var decoded = l.search
+						.slice(1)
+						.split("&")
+						.map(function (s) {
+							return s.replace(/~and~/g, "&");
+						})
+						.join("?");
+					window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+				}
+			})(window.location);
+		</script>
+		<script type="module" crossorigin src="/SmartAI-2/assets/index-888d5e0c.js"></script>
+		<link rel="stylesheet" href="/SmartAI-2/assets/index-13ca60ef.css">
+	</head>
+	<body class="bg-gray-100 font-[Cairo] text-OpenColor-gray-7 dark:bg-OpenColor-gray-9 dark:text-OpenColor-gray-0">
+		<div id="root"></div>
+		
+	</body>
+</html>
