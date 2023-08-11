@@ -16,9 +16,9 @@ We have several goals for DoctorGPT, including:
 
 We hope to integrate our application with health platforms to serve patients of all age groups.
 
-## SmartAI Team
+## DoctorGPT Team
 
-Our SmartAI team is comprised of a group of creators and founders who believe in the potential of artificial intelligence to improve people's lives. We are committed to developing DoctorGPT into a valuable tool for patients.
+Our DoctorGPT Team is comprised of a group of creators and founders who believe in the potential of artificial intelligence to improve people's lives. We are committed to developing DoctorGPT into a valuable tool for patients.
 
 **Team Members:**
 - **Omar Al-Anzi** - Team leader and lead developer of SmartAI. A free-spirited software engineer with over 5 years of experience in developing smart applications. He's a technology enthusiast and believes in AI's potential to enhance lives.
