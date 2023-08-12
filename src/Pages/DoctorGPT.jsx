@@ -6,13 +6,20 @@ const DoctorGPT = () => {
 	const [userMessage, setUserMessage] = useState("");
 	const [chatMessages, setChatMessages] = useState([{ role: "system", content: "You are DoctorGPT, you will be provided with questions or cases from patients about their health, and your task is to provide them with the reasons and solutions for their cases in Arabic." }]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [apiKey, setApiKey] = useState("");
 	const lastMessageRef = useRef(null);
 
 	const openai = new OpenAIApi(
 		new Configuration({
-			apiKey: "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",
+			apiKey: apiKey,
 		})
 	);
+
+	const reloadChat = () => {
+		const chatMessages = document.getElementById("chat-messages");
+		chatMessages.innerHTML = "";
+		setChatMessages([{ role: "system", content: "You are DoctorGPT, you will be provided with questions or cases from patients about their health, and your task is to provide them with the reasons and solutions for their cases in Arabic." }]);
+	};
 
 	const handleSubmit = () => {
 		const newChatMessages = [...chatMessages, { role: "user", content: userMessage }];
@@ -78,6 +85,28 @@ const DoctorGPT = () => {
 			<div className="container mx-auto">
 				<div className="max-w-4xl mx-auto p-4">
 					<div id="chat-container" className="bg-white p-4 rounded-lg shadow-lg overflow-hidden">
+						<div className="text-center text-sm">
+							<div className="flex flex-row-reverse gap-2">
+								<div className="flex-1 relative flex items-center">
+									<Input
+										placeholder={"API KEY"}
+										onChange={(e) => {
+											setApiKey(e.target.value);
+										}}
+										value={apiKey}
+										type={"password"}
+									/>
+								</div>
+							</div>
+							<div className="pt-4 text-center text-sm">
+								<div dir="ltr">To get the app up and running please set your OpenAI API Key.</div>
+								<div>لتشغيل التطبيق ، يرجى تعيين مفتاح OpenAI API الخاص بك.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="max-w-4xl mx-auto p-4">
+					<div id="chat-container" className="bg-white p-4 rounded-lg shadow-lg overflow-hidden">
 						<div className="text-center font-bold text-2xl p-4 pt-0">DoctorGPT</div>
 						<hr />
 						<div id="chat-messages" className="flex flex-col gap-4 py-8">
@@ -101,6 +130,11 @@ const DoctorGPT = () => {
 							<button onClick={handleSubmit} className="bg-main p-2 rounded-lg">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-6 h-6">
 									<path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+								</svg>
+							</button>
+							<button onClick={reloadChat} className="bg-main p-2 rounded-lg">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="white" className="w-6 h-6">
+									<path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
 								</svg>
 							</button>
 						</div>
