@@ -39,7 +39,14 @@ const DoctorGPT = () => {
 			setChatMessages(newChatMessages);
 		} catch (error) {
 			console.error(error);
-			appendMessage("Error", "حدث خطأ أثناء معالجة طلبك. حاول مرة اخرى.");
+			const response = JSON.parse(error.response.request.responseText).error.code;
+			if (response === "invalid_api_key") {
+				appendMessage("Error", "Error 401: Missing API Key");
+				console.log(response);
+			} else {
+				appendMessage("Error", "حدث خطأ أثناء معالجة طلبك. حاول مرة اخرى.");
+				console.log("حدث خطأ أثناء معالجة طلبك. حاول مرة اخرى.");
+			}
 		} finally {
 			const loadingMessage = document.getElementById("Loading");
 			if (loadingMessage) loadingMessage.remove();
@@ -100,8 +107,19 @@ const DoctorGPT = () => {
 							</button>
 						</div>
 						<div ref={lastMessageRef} className="pt-4 text-center text-sm">
-							<div dir="ltr">DoctorGPT is still under development and may produce inaccurate information.</div>
-							<div>DoctorGPT لا يزال قيد التطوير وقد ينتج معلومات غير دقيقة.</div>
+							<div dir="ltr">
+								DoctorGPT is still under development if you face any errors please{" "}
+								<a className="text-main" target="_blank" href="https://github.com/OmarAfet/SmartAI/issues/new">
+									contact us
+								</a>
+							</div>
+							<div>
+								لا يزال DoctorGPT قيد التطوير إذا واجهت أي أخطاء ، يرجى{" "}
+								<a className="text-main" target="_blank" href="https://github.com/OmarAfet/SmartAI/issues/new">
+									{" "}
+									التواصل
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
