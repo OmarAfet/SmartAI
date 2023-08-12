@@ -10,7 +10,7 @@ const DoctorGPT = () => {
 
 	const openai = new OpenAIApi(
 		new Configuration({
-			apiKey: "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",
+			apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 		})
 	);
 
