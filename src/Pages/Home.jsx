@@ -105,9 +105,7 @@ const Home = () => {
 						<div className="lg:text-3xl text-xl">يكون تطبيقنا مربوط مع تطبيق صحتي لخدمة جميع المرضى بجميع الفئات العمرية.</div>
 					</div>
 					<div className="flex flex-col text-center pb-32">
-						<div className="lg:text-8xl text-6xl font-bold pb-16 pt-32">
-							اعضاء الفريق
-						</div>
+						<div className="lg:text-8xl text-6xl font-bold pb-16 pt-32">اعضاء الفريق</div>
 						<div className="grid grid-cols-1 gap-4">
 							<a target="_blank" href="https://profile.satr.codes/omarafet/public/overview" className="bg-gray-200 p-4 rounded-lg hover:shadow-lg cursor-pointer">
 								<div className="flex">
