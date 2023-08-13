@@ -47,8 +47,9 @@ const DoctorGPT = () => {
 		} catch (error) {
 			console.error(error);
 			const response = JSON.parse(error.response.request.responseText).error.code;
-			if (response === "invalid_api_key") {
-				appendMessage("Error", "Error 401: Missing API Key");
+			if (response === "invalid_api_key" || !apiKey) {
+				console.log(error);
+				appendMessage("Error", "Error 401: Invalid API Key");
 			} else {
 				appendMessage("Error", "حدث خطأ أثناء معالجة طلبك. حاول مرة اخرى.");
 			}
