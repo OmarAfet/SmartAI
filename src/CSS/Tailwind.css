@@ -8,6 +8,7 @@
   margin: 0px;
   padding: 0px;
   @apply placeholder:select-none;
+  @apply motion-reduce:transition-none;
 }
 
 img {
