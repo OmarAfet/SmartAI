@@ -6,12 +6,12 @@ const DoctorGPT = () => {
 	const [userMessage, setUserMessage] = useState("");
 	const [chatMessages, setChatMessages] = useState([{ role: "system", content: "You are DoctorGPT, you will be provided with questions or cases from patients about their health, and your task is to provide them with the reasons and solutions for their cases in Arabic." }]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [apiKey, setApiKey] = useState("");
+	const [userAPIKey, setUserAPIKey] = useState("");
 	const lastMessageRef = useRef(null);
 
 	const openai = new OpenAIApi(
 		new Configuration({
-			apiKey: apiKey,
+			apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 		})
 	);
 
@@ -47,7 +47,7 @@ const DoctorGPT = () => {
 		} catch (error) {
 			console.error(error);
 			const response = JSON.parse(error.response.request.responseText).error.code;
-			if (response === "invalid_api_key" || !apiKey) {
+			if (response === "invalid_api_key" || !userAPIKey) {
 				console.log(error);
 				appendMessage("Error", "Error 401: Invalid API Key");
 			} else {
@@ -92,9 +92,9 @@ const DoctorGPT = () => {
 									<Input
 										placeholder={"API KEY"}
 										onChange={(e) => {
-											setApiKey(e.target.value);
+											setUserAPIKey(e.target.value);
 										}}
-										value={apiKey}
+										value={userAPIKey}
 										type={"password"}
 									/>
 								</div>
