@@ -18,11 +18,11 @@ const Home = () => {
               >
                 <path
                   d="M266.49733,202.06383h-7.66175l-30.64699,65.87234h17.28565l17.19221,-39.99058l17.19221,39.99058h17.28565z"
-                  className="fill-gray-700"
+                  fill="currentColor"
                 ></path>
                 <path
                   d="M321.81141,202.06383h-16.6316v65.87234h16.6316z"
-                  className="fill-gray-700"
+                  fill="currentColor"
                 ></path>
               </svg>
             </div>
