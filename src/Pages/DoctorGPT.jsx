@@ -1,8 +1,11 @@
 import { Configuration, OpenAIApi } from "openai";
 import { useState, useRef } from "react";
 import Input from "../Components/Input";
+import { motion } from "framer-motion"
 
 const DoctorGPT = () => {
+  const [animationDone, setAnimationDone] = useState(false);
+
   const [userMessage, setUserMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([
     {
@@ -139,9 +142,14 @@ const DoctorGPT = () => {
 					</div>
 				</div> */}
         <div className="max-w-4xl mx-auto p-4">
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            
+            transition={{ duration: 0.8, ease: "backInOut" }}
+            onAnimationComplete={() => setAnimationDone(true)}
             id="chat-container"
-            className="bg-white p-4 rounded-lg shadow-lg overflow-hidden"
+            className={`${!animationDone && "duration-0"} bg-white p-4 rounded-lg shadow-lg overflow-hidden`}
           >
             <div className="text-center font-bold text-2xl p-4 pt-0">
               DoctorGPT
@@ -218,7 +226,7 @@ const DoctorGPT = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
