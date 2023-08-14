@@ -22,6 +22,9 @@ const DoctorGPT = () => {
 	};
 
 	const handleSubmit = () => {
+		if (isLoading) return;
+		if (!userMessage) return;
+		if (userMessage.trim().length === 0) return;
 		const newChatMessages = [...chatMessages, { role: "user", content: userMessage }];
 		setChatMessages(newChatMessages);
 		appendMessage("User", userMessage);
@@ -34,10 +37,8 @@ const DoctorGPT = () => {
 
 	const sendMessage = async (messages) => {
 		try {
-			if (isLoading) return;
-			if (!userMessage) return;
 			setIsLoading(true);
-			appendMessage("Loading", "<img class='h-6 w-6' src='./Images/Loading Black.gif' />");
+			appendMessage("Loading", '<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>');
 			const completion = await openai.createChatCompletion({
 				model: "gpt-3.5-turbo",
 				messages: messages,
@@ -50,7 +51,7 @@ const DoctorGPT = () => {
 		} catch (error) {
 			console.error(error);
 			const response = JSON.parse(error.response.request.responseText).error.code;
-			if (response === "invalid_api_key"/* || !userAPIKey */) {
+			if (response === "invalid_api_key" /* || !userAPIKey */) {
 				console.log(error);
 				appendMessage("Error", "Error 401: Invalid API Key");
 			} else {
@@ -67,8 +68,8 @@ const DoctorGPT = () => {
 	};
 
 	const appendMessage = (sender, message) => {
-		if (isLoading) return;
 		if (!userMessage) return;
+		message = message.trim();
 		const chatMessages = document.getElementById("chat-messages");
 		const messageElement = document.createElement("div");
 		messageElement.id = sender;
@@ -77,10 +78,7 @@ const DoctorGPT = () => {
 			<div class="font-bold">
 				${sender === "User" ? "انت" : "DoctorGPT"}
 			</div>
-			<div class="${sender == "User" ? "bg-main text-OpenColor-gray-0 break-all" : sender == "Error" ? "bg-OpenColor-red-1" : "bg-OpenColor-gray-1"} p-2 rounded-lg">
-				${message}
-			</div>
-		`;
+			<div class="${sender == "User" ? "bg-main text-OpenColor-gray-0 break-all" : sender == "Error" ? "bg-OpenColor-red-1" : "bg-OpenColor-gray-1"} p-2 rounded-lg whitespace-pre-wrap">${message}</div>`;
 		chatMessages.appendChild(messageElement);
 	};
 
@@ -117,11 +115,13 @@ const DoctorGPT = () => {
 						<div id="chat-messages" className="flex flex-col gap-4 py-8">
 							{/* Messages */}
 						</div>
-						<div className="flex flex-row-reverse gap-2">
+						<div className="flex flex-row-reverse gap-2 items-center">
 							<div className="flex-1 relative flex items-center">
 								<Input
 									onKeyDown={(e) => {
-										if (e.key === "Enter") {
+										// check if the user pressed enter not shift + enter
+										if (e.key === "Enter" && !e.shiftKey) {
+											e.preventDefault();
 											handleSubmit();
 										}
 									}}
