@@ -77,7 +77,7 @@ const DoctorGPT = () => {
 			<div class="font-bold">
 				${sender === "User" ? "انت" : "DoctorGPT"}
 			</div>
-			<div class="${sender == "User" ? "bg-main text-OpenColor-gray-0" : sender == "Error" ? "bg-OpenColor-red-1" : "bg-OpenColor-gray-1"} p-2 rounded-lg break-all">
+			<div class="${sender == "User" ? "bg-main text-OpenColor-gray-0 break-all" : sender == "Error" ? "bg-OpenColor-red-1" : "bg-OpenColor-gray-1"} p-2 rounded-lg">
 				${message}
 			</div>
 		`;
