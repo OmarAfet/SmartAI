@@ -19,7 +19,7 @@ const Input = ({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onChange={onChange}
-        className="flex-1 border-2 focus:border-main rounded-lg px-2 py-1 peer duration-0 h-[40px] min-h-[40px] max-h-[200px]"
+        className="flex-1 border-2 focus:border-main rounded-lg px-2 py-1 peer transition-[border] duration-300 h-[40px] min-h-[40px] max-h-[200px]"
       />
       <label
         htmlFor={placeholder}
