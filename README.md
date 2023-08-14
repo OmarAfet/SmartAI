@@ -1,4 +1,4 @@
-# SmartAI 
+# SmartAI
 
 SmartAI is a place where creativity thrives. We are a team of creators and dedicated researchers aiming to use artificial intelligence to enhance people's lives.
 
