@@ -27,6 +27,9 @@ const DoctorGPT = () => {
 		appendMessage("User", userMessage);
 		setUserMessage("");
 		sendMessage(newChatMessages);
+		if (lastMessageRef.current) {
+			lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+		}
 	};
 
 	const sendMessage = async (messages) => {
