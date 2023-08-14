@@ -6,7 +6,7 @@ const DoctorGPT = () => {
 	const [userMessage, setUserMessage] = useState("");
 	const [chatMessages, setChatMessages] = useState([{ role: "system", content: "You are DoctorGPT, you will be provided with questions or cases from patients about their health, and your task is to provide them with the reasons and solutions for their cases in Arabic." }]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [userAPIKey, setUserAPIKey] = useState("");
+	// const [userAPIKey, setUserAPIKey] = useState("");
 	const lastMessageRef = useRef(null);
 
 	const openai = new OpenAIApi(
@@ -47,7 +47,7 @@ const DoctorGPT = () => {
 		} catch (error) {
 			console.error(error);
 			const response = JSON.parse(error.response.request.responseText).error.code;
-			if (response === "invalid_api_key" || !userAPIKey) {
+			if (response === "invalid_api_key"/* || !userAPIKey */) {
 				console.log(error);
 				appendMessage("Error", "Error 401: Invalid API Key");
 			} else {
@@ -84,7 +84,8 @@ const DoctorGPT = () => {
 	return (
 		<>
 			<div className="container mx-auto">
-				<div className="max-w-4xl mx-auto p-4">
+				{/* API input field (in case there's no free API from the owner) */}
+				{/* <div className="max-w-4xl mx-auto p-4">
 					<div id="chat-container" className="bg-white p-4 rounded-lg shadow-lg overflow-hidden">
 						<div className="text-center text-sm">
 							<div className="flex flex-row-reverse gap-2">
@@ -105,7 +106,7 @@ const DoctorGPT = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div className="max-w-4xl mx-auto p-4">
 					<div id="chat-container" className="bg-white p-4 rounded-lg shadow-lg overflow-hidden">
 						<div className="text-center font-bold text-2xl p-4 pt-0">DoctorGPT</div>
