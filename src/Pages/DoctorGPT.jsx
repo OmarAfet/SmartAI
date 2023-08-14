@@ -116,7 +116,7 @@ const DoctorGPT = () => {
 							</div>
 							<div className="pt-4 text-center text-sm">
 								<div dir="ltr">If the app is giving the error message <span className="text-OpenColor-red-7">Invalid API Key</span> please set your OpenAI API Key.</div>
-								<div>إذا كان التطبيق يعطي رسالة الخطأ <span className="text-OpenColor-red-7">Invalid API Key</span> ، فالرجاء تعيين OpenAI API Key الخاص بك.</div>
+								<div>إذا كان التطبيق يعطي رسالة الخطأ <span className="text-OpenColor-red-7">Invalid API Key</span> فالرجاء تعيين OpenAI API Key الخاص بك.</div>
 							</div>
 						</div>
 					</div>
