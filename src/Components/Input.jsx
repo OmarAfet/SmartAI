@@ -23,8 +23,8 @@ const Input = ({
       />
       <label
         htmlFor={placeholder}
-        className={`absolute right-0 mx-[10px] px-1 text-gray-400 cursor-text inline-block peer-focus:-top-2.5 peer-focus:text-xs duration-150 ${
-          value ? "text-xs -top-2.5" : "top-2"
+        className={`absolute right-0 mx-[10px] px-1 text-[16px] text-gray-400 cursor-text inline-block peer-focus:-top-2.5 peer-focus:text-xs duration-150 ${
+          value ? "text-xs -top-2.5" : "top-2.5"
         } bg-white select-none`}
       >
         {placeholder}
