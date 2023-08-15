@@ -6,7 +6,7 @@ import ErrorPage from "./Pages/ErrorPage";
 
 // Routes configuration
 const routes = [
-	{ path: "/SmartAI", element: <Home /> },
+	{ path: "/SmartAI/", element: <Home /> },
 	{ path: "/SmartAI/Home", element: <Home /> },
 	{ path: "/SmartAI/DoctorGPT", element: <DoctorGPT /> },
 	{ path: "/SmartAI/*", element: <ErrorPage /> },
