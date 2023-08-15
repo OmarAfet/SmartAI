@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import TeamData from "../../../../data/DoctorGPT/TeamData";
+import TeamData from "../data/TeamData";
 import { useState } from "react";
 
 const container = {

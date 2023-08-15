@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./Components/NavBar";
-import Home from "./Pages/Home";
-import DoctorGPT from "./Pages/DoctorGPT";
-import ErrorPage from "./Pages/ErrorPage";
+import Home from "./Pages/Home/Home";
+import DoctorGPT from "./Pages/DoctorGPT/DoctorGPT";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 // Routes configuration
 const routes = [

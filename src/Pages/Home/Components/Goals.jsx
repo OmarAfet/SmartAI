@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import GoalsData from "../../../../data/DoctorGPT/GoalsData";
+import GoalsData from "../data/GoalsData";
 import { useState } from "react";
 
 const container = {

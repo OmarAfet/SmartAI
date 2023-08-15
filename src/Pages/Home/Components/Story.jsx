@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import StoryData from "../../../../data/DoctorGPT/StoryData";
+import StoryData from "../data/StoryData";
 import { useState } from "react";
 
 const Story = () => {

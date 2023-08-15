@@ -1,98 +1,37 @@
 import { Configuration, OpenAIApi } from "openai";
-import { useState, useRef } from "react";
-import Input from "../Components/Input";
+import { useState, useRef, useEffect } from "react";
+import Input from "../../Components/Input";
 import { motion } from "framer-motion";
+import OpenAIChat from "../../API/OpenAIChat";
 
 const DoctorGPT = () => {
-  const [chatMessages, setChatMessages] = useState([
-    {
-      role: "system",
-      content:
-        "You are DoctorGPT, you will be provided with questions or cases from patients about their health, and your task is to provide them with the reasons and solutions for their cases in Arabic.",
-    },
-  ]);
+  const lastMessageRef = useRef(null);
   const [animationDone, setAnimationDone] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [userAPIKey, setUserAPIKey] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const lastMessageRef = useRef(null);
+  const { isLoading, reloadChat, sendMessage } = OpenAIChat(userAPIKey);
 
-  const openai = new OpenAIApi(
-    new Configuration({
-      apiKey: userAPIKey || import.meta.env.VITE_OPENAI_API_KEY,
-    }),
-  );
+  useEffect(() => {
+    setTimeout(() => {
+      appendMessage("AI", "السلام عليكم! كيف يمكنني مساعدتك؟");
+    }, 1500);
+  }, []);
 
-  const reloadChat = () => {
-    const chatMessages = document.getElementById("chat-messages");
-    chatMessages.innerHTML = "";
-    setChatMessages([
-      {
-        role: "system",
-        content:
-          "You are DoctorGPT, you will be provided with questions or cases from patients about their health, and your task is to provide them with the reasons and solutions for their cases in Arabic.",
-      },
-    ]);
-  };
-
-  const handleSubmit = () => {
-    if (isLoading) return;
-    if (!userMessage) return;
-    if (userMessage.trim().length === 0) return;
-    const newChatMessages = [
-      ...chatMessages,
-      { role: "user", content: userMessage },
-    ];
-    setChatMessages(newChatMessages);
+  const handleSubmit = async () => {
+    if (isLoading || !userMessage || userMessage.trim().length === 0) return;
     appendMessage("User", userMessage);
-    setUserMessage("");
-    sendMessage(newChatMessages);
-    if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const sendMessage = async (messages) => {
-    try {
-      setIsLoading(true);
-      appendMessage(
-        "Loading",
-        '<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>',
-      );
-      const completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: messages,
-      });
-
-      const reply = completion.data.choices[0].message.content;
-      appendMessage("AI", reply);
-      const newChatMessages = [
-        ...messages,
-        { role: "assistant", content: reply },
-      ];
-      setChatMessages(newChatMessages);
-    } catch (error) {
-      console.error(error);
-      const response = JSON.parse(error.response.request.responseText).error
-        .code;
-      if (response === "invalid_api_key") {
-        console.log(error);
-        appendMessage("Error", "Error 401: Invalid API Key");
-      } else {
-        appendMessage("Error", error.message);
-      }
-    } finally {
-      const loadingMessage = document.getElementById("Loading");
-      if (loadingMessage) loadingMessage.remove();
-      setIsLoading(false);
-      if (lastMessageRef.current) {
-        lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    appendMessage(
+      "Loading",
+      '<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>',
+    );
+    const response = await sendMessage(userMessage, setUserMessage);
+    appendMessage(response.sender, response.message);
   };
 
   const appendMessage = (sender, message) => {
-    if (!userMessage) return;
+    if (!sender === "AI") {
+      if (!userMessage) return;
+    }
     message = message.trim();
     const chatMessages = document.getElementById("chat-messages");
     const messageElement = document.createElement("div");

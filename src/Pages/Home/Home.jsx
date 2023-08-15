@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Goals from "../Components/Pages/Home/DoctorGPT/Goals";
-import Story from "../Components/Pages/Home/DoctorGPT/Story";
-import TeamMembers from "../Components/Pages/Home/DoctorGPT/Team";
-import Logo from "../Components/Logo";
+import Goals from "./Components/Goals";
+import Story from "./Components/Story";
+import Team from "./Components/Team";
+import Logo from "../../Components/Logo";
 
 const Home = () => {
   return (
@@ -22,7 +22,7 @@ const Home = () => {
       <section>
         <Story />
         <Goals />
-        <TeamMembers />
+        <Team />
       </section>
     </div>
   );
