@@ -41,7 +41,6 @@ const useOpenAIChat = (userAPIKey) => {
       const response = JSON.parse(error.response.request.responseText).error
         .code;
       if (response === "invalid_api_key") {
-        console.log(error);
         return { sender: "Error", message: "Error 401: Invalid API Key" };
       } else {
         return { sender: "Error", message: error.message };
