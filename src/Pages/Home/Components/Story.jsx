@@ -19,12 +19,12 @@ const Story = () => {
         {StoryData.map((story, index) => (
           <motion.div
             key={index}
-            initial={{ x: 100 }}
+            initial={{ opacity: 0, y: 100 }}
             onAnimationComplete={() => {
               handleAnimationComplete(index);
             }}
             viewport={{ once: true }}
-            whileInView={{ x: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className={`${
               !animationStates[index] ? "duration-0" : ""
